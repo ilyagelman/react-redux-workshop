@@ -1,17 +1,14 @@
 import React from 'expose?React!react';
 import { render } from 'react-dom';
 
-import HelloWorld from './components/hello-world';
-import StateProps from './components/state-props';
-import Lifecycle from './components/lifecycle';
+import Game from './components/game';
+import { Provider } from 'react-redux';
 
-import './redux-intro';
-// import ReduxComponent from './components/redux-component';
+import store from './store';
 
-// render(
-//   // <HelloWorld/>,
-//   // <Lifecycle/>,
-//   // <StateProps/>,
-//   <ReduxComponent/>,
-//   document.getElementById('app')
-// );
+render(
+  <Provider store={ store }>
+    <Game/>
+  </Provider>,
+  document.getElementById('app')
+);
