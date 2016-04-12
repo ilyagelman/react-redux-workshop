@@ -5,9 +5,13 @@ import HelloWorld from './components/hello-world';
 import StateProps from './components/state-props';
 import Lifecycle from './components/lifecycle';
 
-render(
-  <HelloWorld/>,
-  // <Lifecycle/>,
-  // <StateProps/>,
-  document.getElementById('app')
-);
+import './redux-intro';
+// import ReduxComponent from './components/redux-component';
+
+// render(
+//   // <HelloWorld/>,
+//   // <Lifecycle/>,
+//   // <StateProps/>,
+//   <ReduxComponent/>,
+//   document.getElementById('app')
+// );
