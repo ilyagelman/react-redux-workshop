@@ -1,11 +1,23 @@
 import { connect } from 'react-redux';
+import { startGame, endGame } from '../actions/game';
+
 import Message from './message';
 import LastScore from './last-score';
 import ScoreHistory from './score-history';
 
-const SPACEBAR_KEY = 32;
+const SPACEBAR_KEYCODE = 32;
 
 class Game extends React.Component {
+
+  static get propTypes() {
+    return {
+      gameStarted: React.PropTypes.bool,
+      scoreHistory: React.PropTypes.array,
+      lastScore: React.PropTypes.number,
+      startGame: React.PropTypes.func,
+      endGame: React.PropTypes.func
+    };
+  }
 
   constructor() {
     super();
@@ -18,7 +30,7 @@ class Game extends React.Component {
   }
 
   handleKeyPress(event) {
-    if (event.keyCode === SPACEBAR_KEY) {
+    if (event.keyCode === SPACEBAR_KEYCODE) {
       return this.props.gameStarted
         ? this.endGame()
         : this.startGame();
@@ -61,7 +73,7 @@ class Game extends React.Component {
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
-        <h1>Response Time Checker</h1>
+        <h1>Check your REACtion</h1>
 
         { !this.props.gameStarted && <LastScore score={ this.props.lastScore }/> }
 
@@ -74,23 +86,10 @@ class Game extends React.Component {
   }
 }
 
-Game.propTypes = {
-  gameStarted: React.PropTypes.bool,
-  scoreHistory: React.PropTypes.array,
-  lastScore: React.PropTypes.number,
-  startGame: React.PropTypes.func,
-  endGame: React.PropTypes.func
-};
-
 const mapStateToProps = (state) => ({
   gameStarted: state.gameStarted,
   scoreHistory: state.scoreHistory,
   lastScore: state.scoreHistory[state.scoreHistory.length - 1]
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  startGame: () => dispatch({ type: 'START_GAME' }),
-  endGame: (score) => dispatch({ type: 'END_GAME', score })
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(mapStateToProps, { startGame, endGame })(Game);

@@ -8,4 +8,8 @@ const LastScore = ({ score }) => {
     : <h4>You pressed too fast</h4>;
 };
 
+LastScore.propTypes = {
+  score: React.PropTypes.number
+};
+
 export default LastScore;

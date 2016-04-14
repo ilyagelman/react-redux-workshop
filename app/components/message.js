@@ -12,4 +12,9 @@ const Message = ({ gameStarted, ready }) => {
   return <h3>{ message }</h3>;
 };
 
+Message.propTypes = {
+  gameStarted: React.PropTypes.bool,
+  ready: React.PropTypes.bool
+};
+
 export default Message;
